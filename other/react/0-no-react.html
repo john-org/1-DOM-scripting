@@ -26,6 +26,18 @@
       // 1. create a DOM element
       // 2. update properties
       // 3. put it in the container
+      // 1. create a DOM element
+      const domElement = document.createElement(fakeReactElement.type);
+
+      // 2. update properties
+      domElement.innerText = fakeReactElement.children;
+      for (const key in fakeReactElement.props) {
+        const value = fakeReactElement.props[key];
+        domElement.setAttribute(key, value);
+      }
+
+      // 3. put it in the container
+      containerElement.appendChild(domElement);
     }
 
     // variables

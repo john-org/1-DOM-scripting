@@ -16,25 +16,25 @@
       const rootElement = document.getElementById("root");
 
       /* vanilla js */
-      const element = document.createElement("a");
-      element.textContent = "Wikipedia";
-      element.className = "container";
-      element.href = "https://wikipedia.org/";
-      rootElement.appendChild(element);
+      // const element = document.createElement("a");
+      // element.textContent = "Wikipedia";
+      // element.className = "container";
+      // element.href = "https://wikipedia.org/";
+      // rootElement.appendChild(element);
 
       /* React */
-      // const element = React.createElement(
-      //   "a",
-      //   {
-      //     className: "container",
-      //     href: "https://wikipedia.org/",
-      //   },
-      //   "Wikipedia"
-      // );
+      const element = React.createElement(
+        "a",
+        {
+          className: "container",
+          href: "https://wikipedia.org/",
+        },
+        "Wikipedia"
+      );
 
       console.log(element);
 
-      // ReactDOM.render(element, rootElement);
+      ReactDOM.render(element, rootElement);
     </script>
   </body>
 </html>

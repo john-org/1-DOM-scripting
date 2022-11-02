@@ -5,8 +5,17 @@
 
 @media (prefers-color-scheme: dark) {
   * {
-    --textcolor: #dadada;
-    --bgcolor: #141414;
+    --textcolor: #eee;
+    --bgcolor: #555;
+    --bgcolor-darker: #333;
+    --highlight: #ffc400;
+  }
+}
+@media (prefers-color-scheme: light) {
+  * {
+    --textcolor: #333;
+    --bgcolor: #fff;
+    --bgcolor-darker: #ddd;
     --highlight: #ffc400;
   }
 }
@@ -17,9 +26,15 @@ body {
   line-height: 1.4;
 }
 
+body {
+  color: var(--textcolor);
+  background: var(--bgcolor-darker);
+}
+
 html {
   box-sizing: border-box;
-  background: #eee;
+  background: var(--bgcolor-darker);
+  scroll-behavior: smooth;
 }
 
 *,
@@ -34,6 +49,10 @@ html {
   background: white;
   padding: 1rem;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.site-wrap {
+  background: var(--bgcolor);
 }
 
 header {
@@ -115,13 +134,13 @@ https://medium.com/@heyoka/responsive-pure-css-off-canvas-hamburger-menu-aebc8d1
   padding-top: 2.5em;
   min-height: 100%;
   width: 200px;
-  background-color: #007eb6;
+  background-color: var(--bgcolor);
 }
 /* Make links block to make them fully clickable on mobile. Remember this is finger navigation, so include plenty of clickable area. */
 .main-menu a {
   display: block;
   padding: 0.75rem;
-  color: #fff;
+  color: var(--textcolor);
   text-decoration: none;
 }
 
@@ -188,6 +207,8 @@ The backdrop is the link on line 42, with no content and hidden. Here we display
     position: static;
     background: #007eb6;
     width: 100%;
+    position: sticky;
+    top: 0px;
   }
 
   .main-menu ul {
@@ -207,6 +228,37 @@ The backdrop is the link on line 42, with no content and hidden. Here we display
   .main-menu a {
     text-decoration: none;
     display: inline-block;
-    color: white;
+    color: var(--textcolor);
   }
+}
+
+/* Interesting way to show only the intersting block */
+/* section {
+  display: none;
+}
+section:target {
+  display: block;
+} */
+
+li.logo img {
+  padding-top: 0.25rem;
+  width: 2.25rem;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 2fr 6fr;
+  grid-column-gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.entry a {
+  text-decoration: none;
+  color: var(--textcolor);
+  font-family: "Lobster", cursive;
+  font-size: 1.5rem;
+}
+
+a.active {
+  color: var(--highlight);
 }
