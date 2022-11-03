@@ -60,19 +60,20 @@ const nytUrl = `https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=${
 //   .then(renderStories);
 
 // Fetch included in another function
-function fetchArticles(section) {
+async function fetchArticles(section) {
   section = section.substring(1);
   if (!localStorage.getItem(section)) {
     console.log("section not in local storage, fetching");
-    fetch(
-      `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${nytapi}`
-    )
-      .then((response) => response.json())
-      .then((myJson) => localStorage.setItem(section, JSON.stringify(myJson)))
-      .then(renderStories(section))
-      .catch((error) => {
-        console.warn(error);
-      });
+    try {
+      const res = await fetch(
+        `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${nytapi}`
+      );
+      myJson = await res.json();
+      localStorage.setItem(section, JSON.stringify(myJson));
+      await renderStories(section);
+    } catch (e) {
+      console.warn("error", err);
+    }
   } else {
     console.log("section in local storage");
     renderStories(section);
